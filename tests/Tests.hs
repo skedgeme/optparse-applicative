@@ -493,23 +493,27 @@ case_reader_error_mplus = do
 
 case_missing_flags_described :: Assertion
 case_missing_flags_described = do
-  let p = (,)
+  let p = (,,,)
         <$> option str (short 'a')
         <*> option str (short 'b')
+        <*> option str (short 'c')
+        <*> option str (short 'd')
       i = info p idm
-  assertError (run i ["-b", "3"]) $ \failure -> do
+  assertError (run i ["-c", "3"]) $ \failure -> do
     let text = head . lines . fst $ renderFailure failure "test"
-    "Missing: -a ARG" @=? text
+    "Missing: -a ARG -b ARG -d ARG" @=? text
 
 case_many_missing_flags_described :: Assertion
 case_many_missing_flags_described = do
-  let p = (,)
+  let p = (,,,)
         <$> option str (short 'a')
         <*> option str (short 'b')
+        <*> option str (short 'c')
+        <*> option str (short 'd')
       i = info p idm
   assertError (run i []) $ \failure -> do
     let text = head . lines . fst $ renderFailure failure "test"
-    "Missing: -a ARG -b ARG" @=? text
+    "Missing: -a ARG -b ARG -c ARG -d ARG" @=? text
 
 case_alt_missing_flags_described :: Assertion
 case_alt_missing_flags_described = do
