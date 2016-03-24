@@ -116,6 +116,11 @@ test-suite tests
   type:                exitcode-stdio-1.0
   hs-source-dirs:      tests
   main-is:             Tests.hs
+  other-modules:       Examples.Alternatives
+                       Examples.Cabal
+                       Examples.Commands
+                       Examples.Formatting
+                       Examples.Hello
   ghc-options:         -Wall -fno-warn-orphans
   build-depends:       base == 4.*,
                        HUnit == 1.2.*,
